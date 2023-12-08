@@ -1,0 +1,2 @@
+# shop-management
+mysql-connector
