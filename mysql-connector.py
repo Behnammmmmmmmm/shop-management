@@ -1,19 +1,24 @@
 import mysql.connector
 
-mydb = mysql.connector.connect(
+a = mysql.connector.connect(
   host="localhost",
   user="root",
-  password="behnam"
+  password="pass"
 )
-mycursor = mydb.cursor()
+b = a.cursor()
+sql = "CREATE DATABASE shop"
+b.execute(sql)
 
-sql = "CREATE DATABASE shop_management9"
+a = mysql.connector.connect(
+  host="localhost",
+  user="root",
+  password="pass",
+  database="shop"
+)
+b = a.cursor()
 
-mycursor.execute(sql)
 
-
-
-def create_products_table():
+def products():
     sql = """
         CREATE TABLE products(
         product_id INT AUTO_INCREMENT,
@@ -26,7 +31,7 @@ def create_products_table():
     cursor.execute(sql)
     connection.commit()
 
-def create_categories_table():
+def categories():
     
     sql = """
         CREATE TABLE categories(
@@ -38,68 +43,39 @@ def create_categories_table():
     cursor.execute(sql)
     connection.commit()
 
-def add_product(product_id, product_name, category_id, price, quantity):
+def add(product_id, product_name, category_id, price, quantity):
     cursor.execute(f'INSERT INTO products (product_id, product_name, category_id, price, quantity) VALUES ({product_id},{product_name},{category_id, price},{ price},{ quantity})')
     connection.commit()
-
-def add_category(category_id, category_name):
+def add(category_id, category_name):
     cursor.execute(f'INSERT INTO categories (category_id, category_name) VALUES ({category_id}, "{category_name}")')
-    connection.commit()
-
-    
-def remove_product(product_id):
+    connection.commit()    
+def remove_t(product_id):
     cursor.execute('DELETE FROM products WHERE product_id = {product_id}')
-    connection.commit()
-    
-def remove_category(category_id):
+    connection.commit()   
+def remove(category_id):
     cursor.execute(f'DELETE FROM categories WHERE category_id = {category_id}')
     connection.commit()
-
-
-def edit_product(product_id, product_name, category_id, price, quantity):
+def edit(product_id, product_name, category_id, price, quantity):
     cursor.execute(f'UPDATE products SET product_name = {product_name}, category_id = {category_id}, price = {price}, quantity = {quantity} WHERE product_id = {product_id}')
     connection.commit()
-
-def edit_category(category_id, category_name):
+def edit(category_id, category_name):
     cursor.execute(f'UPDATE categories SET category_name = {category_name} WHERE category_id = {category_id}')
     connection.commit()
-
-
-def search_product_by_name(product_name):
+def search(product_name):
     cursor.execute(f'SELECT * FROM products WHERE product_name LIKE { product_name}')
     product = cursor.fetchall()
     return product
-
-
-def search_product_by_category(category_name):
+def search(category_name):
     cursor.execute(f'SELECT * FROM categories WHERE product_name LIKE { category_name}')
     product = cursor.fetchall()
     return product
-
-def show_all_products():
+def show():
     cursor.execute('SELECT * FROM products')
     products = cursor.fetchall()
-    for product in products:
-        print(product)
-
-
-def show_all_categories():
+    for aa in products:
+        print(aa)
+def shows():
     cursor.execute('SELECT * FROM categories')
     categories = cursor.fetchall()
-    for category in categories:
-        print(category)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    for bb in categories:
+        print(bb)
