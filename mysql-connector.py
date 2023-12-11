@@ -45,22 +45,22 @@ def categories():
 
 def add(product_id, product_name, category_id, price, quantity):
     cursor.execute(f'INSERT INTO products (product_id, product_name, category_id, price, quantity) VALUES ({product_id},{product_name},{category_id, price},{ price},{ quantity})')
-    connection.commit()
+    a.commit()
 def add(category_id, category_name):
     cursor.execute(f'INSERT INTO categories (category_id, category_name) VALUES ({category_id}, "{category_name}")')
-    connection.commit()    
+    a.commit()    
 def remove_t(product_id):
     cursor.execute('DELETE FROM products WHERE product_id = {product_id}')
-    connection.commit()   
+    a.commit()   
 def remove(category_id):
     cursor.execute(f'DELETE FROM categories WHERE category_id = {category_id}')
-    connection.commit()
+    a.commit()
 def edit(product_id, product_name, category_id, price, quantity):
     cursor.execute(f'UPDATE products SET product_name = {product_name}, category_id = {category_id}, price = {price}, quantity = {quantity} WHERE product_id = {product_id}')
-    connection.commit()
+    a.commit()
 def edit(category_id, category_name):
     cursor.execute(f'UPDATE categories SET category_name = {category_name} WHERE category_id = {category_id}')
-    connection.commit()
+    a.commit()
 def search(product_name):
     cursor.execute(f'SELECT * FROM products WHERE product_name LIKE { product_name}')
     product = cursor.fetchall()
